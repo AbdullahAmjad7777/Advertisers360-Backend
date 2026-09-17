@@ -1,0 +1,226 @@
+2026-08-04T17:31:56.608Z [geo-verify] employeeId=20 detected=(31.461707420003144, 74.41433136693358) accuracy=183m distance=309m radius=400m result=IN_RANGE
+2026-08-04T17:32:42.122Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:43.892Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:45.253Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:45.572Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:45.812Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:46.360Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:46.681Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:49.009Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:49.688Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:32:52.440Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:02.465Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:11.714Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:13.904Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:14.590Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:15.169Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:15.362Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:15.542Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:15.704Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:15.832Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:15.965Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:16.118Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:16.351Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:16.488Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:16.634Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:16.770Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:16.990Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:17.110Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:33:45.219Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:34:42.940Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:20.699Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:21.397Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:22.055Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:22.229Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:22.436Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:24.880Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:28.533Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:36:48.761Z [geo-verify] employeeId=20 detected=(31.461698319025423, 74.41437102770692) accuracy=187m distance=312m radius=400m result=IN_RANGE
+2026-08-04T17:37:56.011Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:38:23.630Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:38:30.116Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T17:39:17.423Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T17:44:11.656Z [geo-login] role=employee detected=(31.461698319025423, 74.41437102770692) accuracy=187m office=(31.4638622, 74.4122764) distance=312m radius=400m result=ALLOWED
+2026-08-04T17:44:18.060Z [geo-verify] employeeId=20 detected=(31.461698319025423, 74.41437102770692) accuracy=187m distance=312m radius=400m result=IN_RANGE
+2026-08-04T17:44:30.701Z [geo-login] role=employee detected=(31.461707420003144, 74.41433136693358) accuracy=183m office=(31.4638622, 74.4122764) distance=309m radius=400m result=ALLOWED
+2026-08-04T17:45:13.686Z [geo-verify] employeeId=20 detected=(31.461707420003144, 74.41433136693358) accuracy=183m distance=309m radius=400m result=IN_RANGE
+2026-08-04T17:45:38.697Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T17:46:44.049Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T17:47:08.897Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T18:15:45.823Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T18:15:59.827Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T18:16:14.218Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T18:21:19.035Z [geo-verify] employeeId=34 detected=(31.461781999999996, 74.41400399999999) accuracy=381m distance=283m radius=400m result=IN_RANGE
+2026-08-04T18:26:21.604Z [geo-verify] employeeId=34 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-04T18:28:46.667Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T18:32:25.818Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T18:32:47.193Z [geo-login] role=employee detected=(31.46169755985575, 74.41414957129035) accuracy=143m office=(31.4638622, 74.4122764) distance=299m radius=400m result=ALLOWED
+2026-08-04T18:35:04.574Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:35:06.522Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:40:47.862Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T18:41:08.343Z [geo-login] role=employee detected=(31.46170258158715, 74.41407746203188) accuracy=127m office=(31.4638622, 74.4122764) distance=295m radius=400m result=ALLOWED
+2026-08-04T18:42:33.225Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:35.005Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:35.493Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:35.733Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:35.940Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:38.390Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:38.598Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:38.786Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:38.964Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:42:39.273Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:46:19.593Z [geo-verify] employeeId=20 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-04T18:46:57.167Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:46:57.375Z [geo-login] role=employee detected=(31.5204, 74.3587) accuracy=unknownm office=(31.4638622, 74.4122764) distance=8083m radius=400m result=DENIED
+2026-08-04T18:46:57.760Z [geo-login] role=employee detected=(31.4638622, 74.4122764) accuracy=unknownm office=(31.4638622, 74.4122764) distance=0m radius=400m result=ALLOWED
+2026-08-04T18:47:55.535Z [geo-login] role=employee detected=(31.46170258158715, 74.41407746203188) accuracy=127m office=(31.4638622, 74.4122764) distance=295m radius=400m result=ALLOWED
+2026-08-04T18:52:56.609Z [geo-verify] employeeId=20 detected=(31.46170584989794, 74.41393648547653) accuracy=183m distance=287m radius=400m result=IN_RANGE
+2026-08-04T18:54:02.498Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:03.717Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:04.468Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:04.729Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:04.933Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:05.143Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:05.326Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:05.519Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:05.699Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:06.015Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:06.326Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:06.633Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:06.924Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:54:07.259Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:12.074Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:13.030Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:13.379Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:13.716Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:14.075Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:14.326Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:14.528Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:14.708Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:15.015Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:15.332Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:55:15.604Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:57:57.464Z [geo-verify] employeeId=20 detected=(31.461709434251027, 74.41392637663824) accuracy=143m distance=286m radius=400m result=IN_RANGE
+2026-08-04T18:59:34.699Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:35.525Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:35.833Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:36.193Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:36.502Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:36.859Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:37.210Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:37.475Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:37.804Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:38.252Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:38.690Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:39.183Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:39.515Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:39.893Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:40.225Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:40.538Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:40.900Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T18:59:41.371Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-04T19:03:01.497Z [geo-verify] employeeId=20 detected=(31.46169655985575, 74.41392859653443) accuracy=187m distance=287m radius=400m result=IN_RANGE
+2026-08-04T19:07:57.604Z [geo-verify] employeeId=20 detected=(31.46170472127849, 74.4139215318452) accuracy=141m distance=286m radius=400m result=IN_RANGE
+2026-08-04T19:12:57.351Z [geo-verify] employeeId=20 detected=(31.46170258158715, 74.41407746203188) accuracy=127m distance=295m radius=400m result=IN_RANGE
+2026-08-04T19:17:57.373Z [geo-verify] employeeId=20 detected=(31.46169208615284, 74.41415902541064) accuracy=141m distance=300m radius=400m result=IN_RANGE
+2026-08-04T19:23:52.077Z [geo-verify] employeeId=20 detected=(31.461707420003144, 74.41433136693358) accuracy=183m distance=309m radius=400m result=IN_RANGE
+2026-08-04T19:28:55.391Z [geo-verify] employeeId=20 detected=(31.461698319025423, 74.41437102770692) accuracy=187m distance=312m radius=400m result=IN_RANGE
+2026-08-04T19:33:12.246Z [geo-verify] employeeId=20 detected=(31.461707420003144, 74.41433136693358) accuracy=183m distance=309m radius=400m result=IN_RANGE
+2026-08-04T19:38:51.625Z [geo-verify] employeeId=20 detected=(31.46169755985575, 74.41414957129035) accuracy=143m distance=299m radius=400m result=IN_RANGE
+2026-08-04T19:43:51.531Z [geo-verify] employeeId=20 detected=(31.46169655985575, 74.41392859653443) accuracy=187m distance=287m radius=400m result=IN_RANGE
+2026-08-04T19:48:02.751Z [geo-verify] employeeId=20 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-04T22:58:47.784Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T22:59:03.586Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T22:59:31.486Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T22:59:45.764Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T23:01:21.356Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T23:01:45.012Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T23:02:23.483Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T23:04:50.304Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-04T23:10:02.988Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T11:46:23.567Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:04:41.264Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:04:56.349Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:05:17.568Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:05:58.725Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:06:33.497Z [geo-login] role=employee detected=(31.46170258158715, 74.41408082204167) accuracy=127m office=(31.4638622, 74.4122764) distance=295m radius=400m result=ALLOWED
+2026-08-05T13:11:35.497Z [geo-verify] employeeId=34 detected=(31.46169755985575, 74.41415440900697) accuracy=143m distance=299m radius=400m result=IN_RANGE
+2026-08-05T13:15:49.601Z [geo-verify] employeeId=34 detected=(31.461707420003144, 74.41433136693358) accuracy=183m distance=309m radius=400m result=IN_RANGE
+2026-08-05T13:16:31.943Z [geo-verify] employeeId=34 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-05T13:16:46.094Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:16:46.977Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:16:47.369Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:16:47.531Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:16:47.694Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:16:47.802Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:17.139Z [geo-login] role=employee detected=(31.461693723379565, 74.41408219659114) accuracy=127m office=(31.4638622, 74.4122764) distance=296m radius=400m result=ALLOWED
+2026-08-05T13:17:27.340Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:28.194Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:28.379Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:28.536Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:28.689Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:28.863Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.009Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.143Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.315Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.466Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.625Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.763Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:29.919Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:30.093Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:30.238Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:30.394Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:30.564Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:30.707Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:30.843Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:31.052Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:34.356Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:34.681Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:35.001Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:35.298Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:35.602Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:35.855Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:17:36.192Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:42.012Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:42.937Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:43.362Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:43.758Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:44.173Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:44.558Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:44.890Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:45.195Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:45.408Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:45.652Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:45.871Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:18:46.068Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T13:21:51.334Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:22:19.051Z [geo-verify] employeeId=34 detected=(31.461705849897942, 74.4139451210551) accuracy=183m distance=287m radius=400m result=IN_RANGE
+2026-08-05T13:27:19.077Z [geo-verify] employeeId=34 detected=(31.461693723379565, 74.41408219659114) accuracy=127m distance=296m radius=400m result=IN_RANGE
+2026-08-05T13:29:38.470Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T13:32:28.035Z [geo-verify] employeeId=34 detected=(31.461693723379565, 74.41408219659114) accuracy=127m distance=296m radius=400m result=IN_RANGE
+2026-08-05T13:37:35.352Z [geo-verify] employeeId=34 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-05T13:38:31.040Z [geo-verify] employeeId=34 detected=(31.461696680270915, 74.4139331934207) accuracy=143m distance=288m radius=400m result=IN_RANGE
+2026-08-05T13:40:04.708Z [geo-login] role=employee detected=(31.4638622, 74.4122764) accuracy=unknownm office=(31.4638622, 74.4122764) distance=0m radius=400m result=ALLOWED
+2026-08-05T13:40:05.521Z [geo-login] role=employee detected=(31.4638622, 74.4122764) accuracy=unknownm office=(31.4638622, 74.4122764) distance=0m radius=400m result=ALLOWED
+2026-08-05T13:43:40.016Z [geo-verify] employeeId=34 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-05T13:44:41.655Z [geo-login] role=manager detected=(31.4638622, 74.4122764) accuracy=unknownm office=(31.4638622, 74.4122764) distance=0m radius=400m result=ALLOWED
+2026-08-05T13:46:33.314Z [geo-login] role=employee detected=(31.523799896240234, 74.28948974609375) accuracy=200m office=(31.4638622, 74.4122764) distance=13415m radius=400m result=DENIED
+2026-08-05T13:46:56.363Z [geo-login] role=employee detected=(31.523799896240234, 74.28948974609375) accuracy=200m office=(31.4638622, 74.4122764) distance=13415m radius=400m result=DENIED
+2026-08-05T13:47:26.890Z [geo-verify] employeeId=34 detected=(31.461696680270915, 74.4139331934207) accuracy=143m distance=288m radius=400m result=IN_RANGE
+2026-08-05T13:47:48.780Z [geo-login] role=employee detected=(31.46169837368814, 74.41393145038785) accuracy=148m office=(31.4638622, 74.4122764) distance=287m radius=400m result=ALLOWED
+2026-08-05T13:52:56.296Z [geo-verify] employeeId=20 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-05T13:53:25.241Z [geo-login] role=employee detected=(31.461709271602754, 74.414289747962) accuracy=182m office=(31.4638622, 74.4122764) distance=306m radius=400m result=ALLOWED
+2026-08-05T13:58:26.945Z [geo-verify] employeeId=34 detected=(31.46169755985575, 74.41415440900697) accuracy=143m distance=299m radius=400m result=IN_RANGE
+2026-08-05T14:03:33.257Z [geo-verify] employeeId=34 detected=(31.523799896240234, 74.28948974609375) accuracy=200m distance=13415m radius=400m result=OUT_OF_RANGE
+2026-08-05T14:05:20.540Z [geo-login] role=employee detected=(31.461693723379565, 74.41408219659114) accuracy=127m office=(31.4638622, 74.4122764) distance=296m radius=400m result=ALLOWED
+2026-08-05T14:07:04.980Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T14:07:50.371Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T14:08:03.783Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T14:08:14.303Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T14:08:16.456Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)
+2026-08-05T14:08:40.395Z [geo-login] role=employee detected=(51.482594, -0.007661) accuracy=1768m office=(31.4638622, 74.4122764) distance=6289203m radius=400m result=DENIED
+2026-08-05T14:08:50.728Z [geo-login] role=employee detected=(31.461693723379565, 74.41408219659114) accuracy=127m office=(31.4638622, 74.4122764) distance=296m radius=400m result=ALLOWED
+2026-08-05T14:09:14.670Z [geo-login] role=employee detected=(31.461693723379565, 74.41408219659114) accuracy=127m office=(31.4638622, 74.4122764) distance=296m radius=400m result=ALLOWED
+2026-08-13T22:20:37.484Z [geo-verify] employeeId=56 detected=(0, 0) accuracy=10m distance=8534184m radius=400m result=OUT_OF_RANGE
+2026-08-13T22:20:39.376Z [geo-verify] employeeId=56 detected=(0, 0) accuracy=10m distance=8534184m radius=400m result=OUT_OF_RANGE
+2026-08-14T00:48:13.804Z [geo-login] role=employee result=DENIED reason=no-coordinates (browser did not provide a location — permission denied or unsupported)

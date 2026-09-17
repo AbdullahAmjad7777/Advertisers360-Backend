@@ -1,0 +1,74 @@
+import { asyncHandler } from '../utils/asyncHandler.js';
+import { parsePagination } from '../utils/pagination.js';
+import { hasPermission } from '../permissions/permissions.js';
+import * as attendanceService from '../services/attendance.service.js';
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.length > 0) {
+    return forwarded.split(',')[0].trim();
+  }
+  return req.socket.remoteAddress;
+}
+
+export const checkIn = asyncHandler(async (req, res) => {
+  const attendance = await attendanceService.checkIn(req.user.id, getClientIp(req));
+  res.status(201).json({ success: true, message: 'Checked in successfully', data: attendance });
+});
+
+export const checkOut = asyncHandler(async (req, res) => {
+  const attendance = await attendanceService.checkOut(req.user.id);
+  res.json({ success: true, message: 'Checked out successfully', data: attendance });
+});
+
+export const today = asyncHandler(async (req, res) => {
+  const pagination = parsePagination(req.query);
+  const result = await attendanceService.getToday(pagination);
+  res.json({ success: true, message: "Today's attendance fetched", data: result });
+});
+
+export const currentStatus = asyncHandler(async (req, res) => {
+  const record = await attendanceService.getCurrentStatus(req.user.id);
+  res.json({ success: true, message: 'Current shift status fetched', data: record });
+});
+
+export const correct = asyncHandler(async (req, res) => {
+  const record = await attendanceService.correctAttendance(Number(req.params.id), req.user.id, {
+    checkInTime: req.body.checkInTime,
+    checkOutTime: req.body.checkOutTime,
+    status: req.body.status,
+    reason: req.body.reason,
+  });
+  res.json({ success: true, message: 'Attendance record updated', data: record });
+});
+
+export const editLog = asyncHandler(async (req, res) => {
+  const log = await attendanceService.getAttendanceEditLog(Number(req.params.id));
+  res.json({ success: true, message: 'Attendance edit history fetched', data: log });
+});
+
+export const trend = asyncHandler(async (req, res) => {
+  const requester = {
+    id: req.user.id,
+    canViewAllAttendance: hasPermission(req.user.role, 'viewAllAttendance'),
+  };
+  const result = await attendanceService.getTrend(requester, {
+    days: req.query.days,
+    employeeId: req.query.employeeId ? Number(req.query.employeeId) : undefined,
+  });
+  res.json({ success: true, message: 'Attendance trend fetched', data: result });
+});
+
+export const historyByEmployee = asyncHandler(async (req, res) => {
+  const pagination = parsePagination(req.query);
+  const requester = {
+    id: req.user.id,
+    canViewAllAttendance: hasPermission(req.user.role, 'viewAllAttendance'),
+  };
+  const result = await attendanceService.getEmployeeHistory(Number(req.params.id), requester, {
+    ...pagination,
+    from: req.query.from,
+    to: req.query.to,
+  });
+  res.json({ success: true, message: 'Attendance history fetched', data: result });
+});

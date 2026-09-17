@@ -1,0 +1,8 @@
+# Force binary mode so core.autocrlf (true on this Windows machine) never
+# rewrites line-endings inside these files — a single byte flip is enough to
+# break a zip's CRC or a dmg's block checksums. Matters here specifically
+# because downloads/*.zip and downloads/*.dmg are committed to this repo so
+# Vercel can serve them.
+*.dmg binary
+*.zip binary
+*.exe binary
