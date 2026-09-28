@@ -68,13 +68,6 @@ router.get(
 );
 
 router.get(
-  '/directory',
-  [query('search').optional().isString()],
-  validateRequest,
-  employeeController.directory,
-);
-
-router.get(
   '/:id',
   [param('id').isInt({ min: 1 }).withMessage('Invalid employee id')],
   validateRequest,

@@ -9,7 +9,6 @@ import {
   insertEmployee,
   findEmployeeDetailById,
   findEmployeesPaginated,
-  findDirectory,
   updateEmployee,
   deleteEmployeeCascade,
   bumpSessionEpoch,
@@ -44,10 +43,6 @@ export async function createEmployee(input) {
 export async function listEmployees({ page, limit, offset, search, status }) {
   const { rows, total } = await findEmployeesPaginated({ limit, offset, search, status });
   return { items: rows, pagination: buildPaginationMeta(page, limit, total) };
-}
-
-export async function listDirectory(search) {
-  return findDirectory(search);
 }
 
 export async function getEmployeeById(id, requester) {

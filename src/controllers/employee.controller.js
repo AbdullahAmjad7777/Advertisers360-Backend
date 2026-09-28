@@ -17,12 +17,6 @@ export const list = asyncHandler(async (req, res) => {
   res.json({ success: true, message: 'Employees fetched', data: result });
 });
 
-export const directory = asyncHandler(async (req, res) => {
-  const search = typeof req.query.search === 'string' ? req.query.search.trim() : '';
-  const employees = await employeeService.listDirectory(search);
-  res.json({ success: true, message: 'Employee directory fetched', data: employees });
-});
-
 export const getById = asyncHandler(async (req, res) => {
   const requester = {
     id: req.user.id,

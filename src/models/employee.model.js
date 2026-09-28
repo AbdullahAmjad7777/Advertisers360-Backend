@@ -148,27 +148,6 @@ export async function findEmployeesPaginated({ limit, offset, search, status }) 
   return { rows, total: countRows[0].total };
 }
 
-export async function findDirectory(search) {
-  const conditions = ['e.is_active = 1'];
-  const params = [];
-
-  if (search) {
-    conditions.push('e.full_name LIKE ?');
-    params.push(`%${search}%`);
-  }
-
-  const [rows] = await pool.query(
-    `SELECT e.id, e.full_name, e.employee_code, r.role_name
-     FROM employees e
-     JOIN roles r ON r.id = e.role_id
-     WHERE ${conditions.join(' AND ')}
-     ORDER BY e.full_name ASC
-     LIMIT 200`,
-    params,
-  );
-  return rows;
-}
-
 const UPDATABLE_FIELDS = {
   fullName: 'full_name',
   email: 'email',

@@ -14,8 +14,6 @@ import leaveRoutes from './routes/leave.routes.js';
 import payrollRoutes from './routes/payroll.routes.js';
 import lookupRoutes from './routes/lookup.routes.js';
 import downloadRoutes from './routes/download.routes.js';
-import conversationRoutes from './routes/conversation.routes.js';
-import messageRoutes from './routes/message.routes.js';
 import settingsRoutes from './routes/settings.routes.js';
 import agentRoutes from './routes/agent.routes.js';
 import agentUninstallRoutes from './routes/agent-uninstall.routes.js';
@@ -85,8 +83,6 @@ app.use('/api/leaves', leaveRoutes);
 app.use('/api/payroll', payrollRoutes);
 app.use('/api/lookups', lookupRoutes);
 app.use('/api/downloads', downloadRoutes);
-app.use('/api/conversations', conversationRoutes);
-app.use('/api/messages', messageRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/agent', agentRoutes);
 // Separate top-level mount (not nested under /api/agent) so it never passes
