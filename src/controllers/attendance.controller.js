@@ -97,14 +97,6 @@ function currentPktYearMonth() {
   return { year, month };
 }
 
-export const calendar = asyncHandler(async (req, res) => {
-  const result = await attendanceService.getYearCalendar(req.user, {
-    employeeId: req.query.employeeId ? Number(req.query.employeeId) : undefined,
-    year: req.query.year ? Number(req.query.year) : currentPktYearMonth().year,
-  });
-  res.json({ success: true, message: 'Attendance calendar fetched', data: result });
-});
-
 export const stats = asyncHandler(async (req, res) => {
   const now = currentPktYearMonth();
   const result = await attendanceService.getAttendanceStats(req.user, {

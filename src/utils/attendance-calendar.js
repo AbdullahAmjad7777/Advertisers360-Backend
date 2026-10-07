@@ -1,11 +1,7 @@
-// Pure day-classification rules shared by the year calendar, the dashboard
-// attendance % and the leave/absence chart, so all three always agree.
+// Pure day-classification rules shared by the dashboard attendance %, the
+// leave/absence chart and the late summary, so they always agree.
 // Every date here is a SHIFT date ("YYYY-MM-DD") — the 18:00 -> 03:00 shift
 // that starts on the 7th is the 7th, including its after-midnight part.
-
-export function isLeapYear(year) {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
 
 // Day 0 of the next month is the last day of this one; Date.UTC handles
 // February in leap years.

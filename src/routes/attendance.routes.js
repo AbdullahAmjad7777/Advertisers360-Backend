@@ -24,16 +24,6 @@ router.get('/me/check-in-block', attendanceController.checkInBlock);
 // The endpoints below are scoped per requester in visibility.service.js:
 // employee -> self, manager -> all employees (+ self), CEO -> employees + manager.
 router.get(
-  '/calendar',
-  [
-    query('employeeId').optional().isInt({ min: 1 }),
-    query('year').optional().isInt({ min: 2000, max: 2100 }),
-  ],
-  validateRequest,
-  attendanceController.calendar,
-);
-
-router.get(
   '/stats',
   [
     query('month').optional().isInt({ min: 1, max: 12 }),

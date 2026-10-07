@@ -20,7 +20,6 @@ import {
   eachDate,
   expandLeaveDates,
   isAttended,
-  isLeapYear,
   NON_COUNTING_STATUSES,
   toDateString,
 } from '../utils/attendance-calendar.js';
@@ -485,37 +484,6 @@ function summarize(days) {
     missedCheckouts,
     attendancePercentage: percentage(attendedDays, workingDays),
     onTimePercentage: percentage(onTimeDays, workingDays),
-  };
-}
-
-export async function getYearCalendar(user, { employeeId, year }) {
-  const [person] = await resolveEmployeeScope(user, employeeId ?? user.id);
-  const days = (await buildDays([person], `${year}-01-01`, `${year}-12-31`)).get(person.id);
-
-  const months = [];
-  let cursor = 0;
-  for (let month = 1; month <= 12; month += 1) {
-    const count = daysInMonth(year, month);
-    months.push({
-      month,
-      daysInMonth: count,
-      days: days.slice(cursor, cursor + count).map(({ date, status, record }) => ({
-        date,
-        status,
-        checkInTime: record?.check_in_time ?? null,
-        checkOutTime: record?.check_out_time ?? null,
-        totalHours: record?.total_hours ?? null,
-      })),
-    });
-    cursor += count;
-  }
-
-  return {
-    employee: { id: person.id, fullName: person.full_name, employeeCode: person.employee_code },
-    year,
-    isLeapYear: isLeapYear(year),
-    months,
-    summary: summarize(days),
   };
 }
 
