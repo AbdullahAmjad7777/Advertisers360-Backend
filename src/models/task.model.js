@@ -3,7 +3,8 @@ import { pool } from '../config/db.js';
 const TASK_SELECT = `
   SELECT t.id, t.title, t.description, t.assigned_to, a.full_name AS assigned_to_name,
          a.employee_code AS assigned_to_code, t.assigned_by, b.full_name AS assigned_by_name,
-         t.due_date, t.is_completed, t.completed_at, t.created_at, t.updated_at
+         t.due_date, t.is_completed, t.completed_at, t.created_at, t.updated_at,
+         (t.assigned_by = t.assigned_to) AS self_added
   FROM tasks t
   JOIN employees a ON a.id = t.assigned_to
   LEFT JOIN employees b ON b.id = t.assigned_by
@@ -14,12 +15,19 @@ export async function findTaskById(id) {
   return rows[0] ?? null;
 }
 
-export async function findTasks({ assignedTo, status, from, to }) {
+// assignedToIn limits results to a set of people (the manager's team view);
+// an empty array means nobody, not everybody.
+export async function findTasks({ assignedTo, assignedToIn, status, from, to }) {
   const conditions = [];
   const params = [];
   if (assignedTo) {
     conditions.push('t.assigned_to = ?');
     params.push(assignedTo);
+  }
+  if (assignedToIn) {
+    if (assignedToIn.length === 0) return [];
+    conditions.push('t.assigned_to IN (?)');
+    params.push(assignedToIn);
   }
   if (status === 'pending') conditions.push('t.is_completed = 0');
   if (status === 'completed') conditions.push('t.is_completed = 1');

@@ -2,6 +2,7 @@ import { ApiError } from '../utils/ApiError.js';
 import { hasPermission } from '../permissions/permissions.js';
 import { resolveShiftDate } from '../utils/shift.js';
 import { getOfficeHours } from './settings.service.js';
+import { getVisibleEmployees } from './visibility.service.js';
 import {
   findTaskById,
   findTasks,
@@ -31,7 +32,19 @@ async function defaultDueDate() {
   return resolveShiftDate(officeStartTime, officeEndTime, new Date());
 }
 
-export async function createTask(creatorId, { title, description, assignedTo, dueDate }) {
+// The CEO assigns tasks to anyone (employees or the manager). Everyone else
+// can only add a task for themselves: whatever assignedTo they send, it's
+// forced to their own id. Self-added tasks show up for the CEO and the
+// manager, and count toward check-out like any other task due that shift.
+export async function createTask(user, { title, description, assignedTo, dueDate }) {
+  if (!hasPermission(user.role, 'manageTasks')) {
+    if (!hasPermission(user.role, 'addOwnTasks')) {
+      throw new ApiError(403, 'You do not have permission to add tasks');
+    }
+    assignedTo = user.id;
+  }
+  if (!assignedTo) throw new ApiError(422, 'assignedTo is required');
+  const creatorId = user.id;
   await assertAssignable(assignedTo);
   const id = await insertTask({
     title,
@@ -43,16 +56,19 @@ export async function createTask(creatorId, { title, description, assignedTo, du
   return findTaskById(id);
 }
 
-// The CEO sees every task (optionally filtered); everyone else only ever
-// sees tasks assigned to them, whatever filter they pass.
-export async function listTasks(user, { assignedTo, status, from, to }) {
-  const canManage = hasPermission(user.role, 'manageTasks');
-  return findTasks({
-    assignedTo: canManage ? assignedTo : user.id,
-    status,
-    from,
-    to,
-  });
+// The CEO sees every task (optionally filtered). The manager sees their own
+// by default, or with scope=team every employee's (+ their own); a filter
+// outside that set returns nothing. Employees only ever see their own.
+export async function listTasks(user, { assignedTo, status, from, to, scope }) {
+  if (hasPermission(user.role, 'manageTasks')) {
+    return findTasks({ assignedTo, status, from, to });
+  }
+  if (scope === 'team' && hasPermission(user.role, 'viewTeamRecords')) {
+    const teamIds = (await getVisibleEmployees(user)).map((p) => p.id);
+    const ids = assignedTo ? teamIds.filter((id) => id === assignedTo) : teamIds;
+    return findTasks({ assignedToIn: ids, status, from, to });
+  }
+  return findTasks({ assignedTo: user.id, status, from, to });
 }
 
 export async function updateTask(id, fields) {
@@ -83,9 +99,15 @@ export async function setCompletion(user, id, completed) {
   return findTaskById(id);
 }
 
-export async function removeTask(id) {
+// The CEO can delete any task; anyone else only a task they added for
+// themselves (not one the CEO assigned them).
+export async function removeTask(user, id) {
   const existing = await findTaskById(id);
   if (!existing) throw new ApiError(404, 'Task not found');
+  const isOwnSelfAdded = existing.assigned_by === user.id && existing.assigned_to === user.id;
+  if (!hasPermission(user.role, 'manageTasks') && !isOwnSelfAdded) {
+    throw new ApiError(403, 'You can only delete tasks you added yourself');
+  }
   await deleteTask(id);
   return existing;
 }

@@ -28,6 +28,9 @@ const FULL_ACCESS = {
   // viewTeamRecords/viewManagerRecords (manager -> employees, CEO -> also
   // the manager), and never your own.
   resetPasswords: true,
+  // Add a task for yourself (it shows up for the CEO and, for employees,
+  // the manager). Assigning to someone else still needs manageTasks.
+  addOwnTasks: true,
 };
 
 const CEO_ACCESS = {
@@ -55,6 +58,7 @@ const EMPLOYEE_ACCESS = {
   unblockCheckIn: false,
   manageLatePolicy: false,
   resetPasswords: false,
+  addOwnTasks: true,
 };
 
 export const ROLE_PERMISSIONS = {

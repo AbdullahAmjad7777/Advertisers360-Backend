@@ -10,7 +10,8 @@ router.use(authenticateToken);
 
 const idParam = param('id').isInt({ min: 1 }).withMessage('Invalid task id');
 
-// Non-CEO callers are always narrowed to their own tasks in task.service.js.
+// Scoped in task.service.js: CEO all, manager own or (scope=team) every
+// employee's, employee only their own.
 router.get(
   '/',
   [
@@ -18,18 +19,21 @@ router.get(
     query('status').optional().isIn(['pending', 'completed', 'all']),
     query('from').optional().isISO8601(),
     query('to').optional().isISO8601(),
+    query('scope').optional().isIn(['mine', 'team']),
   ],
   validateRequest,
   taskController.list,
 );
 
+// CEO: assign to anyone. Others (addOwnTasks): assignedTo is ignored and
+// forced to themselves in task.service.js.
 router.post(
   '/',
-  requirePermission('manageTasks'),
+  requirePermission('addOwnTasks'),
   [
     body('title').trim().notEmpty().isLength({ max: 200 }).withMessage('Title is required (max 200 characters)'),
     body('description').optional({ nullable: true }).isString().isLength({ max: 5000 }),
-    body('assignedTo').isInt({ min: 1 }).withMessage('assignedTo is required'),
+    body('assignedTo').optional().isInt({ min: 1 }),
     body('dueDate').optional().isISO8601().withMessage('dueDate must be a valid date'),
   ],
   validateRequest,
@@ -58,6 +62,7 @@ router.patch(
   taskController.complete,
 );
 
-router.delete('/:id', requirePermission('manageTasks'), [idParam], validateRequest, taskController.remove);
+// CEO: any task. Others: only tasks they added themselves (task.service.js).
+router.delete('/:id', [idParam], validateRequest, taskController.remove);
 
 export default router;
