@@ -4,8 +4,18 @@ export function notFoundHandler(req, res) {
   res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` });
 }
 
+// Full detail goes to the server logs (Vercel -> Logs), never to the client.
+// The request body is deliberately not logged: login bodies hold passwords.
+function logServerError(err, req) {
+  console.error(
+    `[api-error] ${req.method} ${req.originalUrl} user=${req.user?.id ?? 'anonymous'}` +
+      ` code=${err.code ?? '-'}${err.sqlMessage ? ` sql="${err.sqlMessage}"` : ''}\n${err.stack ?? err}`,
+  );
+}
+
 export function errorHandler(err, req, res, next) {
   if (err instanceof ApiError) {
+    if (err.statusCode >= 500) logServerError(err, req);
     return res
       .status(err.statusCode)
       .json({ success: false, message: err.message, code: err.code, details: err.details });
@@ -29,6 +39,6 @@ export function errorHandler(err, req, res, next) {
       .json({ success: false, message: 'One of the referenced records (department, designation, role, or manager) does not exist' });
   }
 
-  console.error(err);
+  logServerError(err, req);
   res.status(500).json({ success: false, message: 'Something went wrong on our end' });
 }

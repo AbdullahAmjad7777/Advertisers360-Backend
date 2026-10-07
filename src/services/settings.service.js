@@ -34,7 +34,8 @@ async function getCompanySettings() {
   cached = {
     officeStartTime: row.office_start_time,
     officeEndTime: row.office_end_time,
-    lateGraceMinutes: Number(row.late_grace_minutes),
+    // Until migration 025 adds the column, keep the old env-var behavior.
+    lateGraceMinutes: Number(row.late_grace_minutes ?? process.env.LATE_GRACE_MINUTES ?? 15),
     locationRestrictionEnabled: Boolean(row.location_restriction_enabled),
   };
   cachedAt = Date.now();
