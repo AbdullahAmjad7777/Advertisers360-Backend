@@ -2,24 +2,13 @@ import { Router } from 'express';
 import multer from 'multer';
 import { body, param } from 'express-validator';
 import { validateRequest } from '../middleware/validate.js';
-import { ApiError } from '../utils/ApiError.js';
 import * as onboardingController from '../controllers/onboarding.controller.js';
+import { employeeFieldLengthValidators } from '../utils/fieldLimits.js';
 
-const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB, profile picture only
-
-// In-memory buffer, uploaded straight to UploadThing — same pattern as the
-// chat-attachment upload routes.
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: { fileSize: MAX_FILE_SIZE_BYTES },
-  fileFilter: (req, file, cb) => {
-    if (!file.mimetype.startsWith('image/')) {
-      cb(new ApiError(422, 'Only image uploads are allowed'));
-      return;
-    }
-    cb(null, true);
-  },
-});
+// The onboarding form is still sent as multipart/form-data; upload.none()
+// parses its text fields and rejects any file part (profile pictures are no
+// longer collected).
+const upload = multer({ storage: multer.memoryStorage() });
 
 const router = Router();
 
@@ -38,11 +27,11 @@ router.get(
 
 router.post(
   '/:token/complete',
-  upload.single('profilePicture'),
+  upload.none(),
   [
     tokenValidator,
     body('fullName').trim().notEmpty().withMessage('Full name is required'),
-    body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
+    body('password').isLength({ min: 8, max: 72 }).withMessage('Password must be 8-72 characters'),
     body('phone').optional().isString(),
     body('cnicNumber').optional().isString(),
     body('address').optional().isString(),
@@ -59,6 +48,9 @@ router.post(
     body('accountNumber').optional().isString(),
     body('iban').optional().isString(),
     body('baseSalary').optional().isFloat({ min: 0 }),
+    // Runs before the controller uploads the profile picture, so a too-long
+    // field is rejected with a clear message and no orphaned upload.
+    ...employeeFieldLengthValidators(),
   ],
   validateRequest,
   onboardingController.complete,

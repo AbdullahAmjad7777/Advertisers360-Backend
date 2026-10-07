@@ -1,4 +1,5 @@
 import { ApiError } from '../utils/ApiError.js';
+import { COLUMN_LABELS } from '../utils/fieldLimits.js';
 
 export function notFoundHandler(req, res) {
   res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` });
@@ -31,6 +32,24 @@ export function errorHandler(err, req, res, next) {
 
   if (err.code === 'ER_DUP_ENTRY') {
     return res.status(409).json({ success: false, message: 'This record already exists' });
+  }
+
+  // STRICT mode rejects over-long or malformed values instead of truncating
+  // them. That's the user's input, not a server fault, so say which field
+  // (validators should catch these first; this is the safety net).
+  if (err.code === 'ER_DATA_TOO_LONG') {
+    const column = err.sqlMessage?.match(/column '([^']+)'/)?.[1];
+    const label = COLUMN_LABELS[column] ?? column ?? 'One of the fields';
+    logServerError(err, req);
+    return res.status(422).json({ success: false, message: `${label} is too long` });
+  }
+  if (
+    err.code === 'ER_TRUNCATED_WRONG_VALUE' ||
+    err.code === 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD' ||
+    err.code === 'ER_WARN_DATA_OUT_OF_RANGE'
+  ) {
+    logServerError(err, req);
+    return res.status(422).json({ success: false, message: 'One of the values is not in a valid format' });
   }
 
   if (err.code === 'ER_NO_REFERENCED_ROW_2' || err.code === 'ER_NO_REFERENCED_ROW') {

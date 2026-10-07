@@ -3,6 +3,7 @@ import { body, param, query } from 'express-validator';
 import { authenticateToken, requirePermission } from '../middleware/auth.js';
 import { validateRequest } from '../middleware/validate.js';
 import * as employeeController from '../controllers/employee.controller.js';
+import { employeeFieldLengthValidators } from '../utils/fieldLimits.js';
 
 const router = Router();
 
@@ -22,6 +23,7 @@ const createValidators = [
   body('managerId').optional().isInt({ min: 1 }),
   body('joinDate').isISO8601().withMessage('joinDate must be a valid date'),
   body('baseSalary').optional().isFloat({ min: 0 }),
+  ...employeeFieldLengthValidators(['fullName', 'phone', 'cnicNumber']),
 ];
 
 const updateValidators = [
@@ -45,6 +47,7 @@ const updateValidators = [
     .optional({ nullable: true })
     .matches(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/)
     .withMessage('shiftEndTime must be in HH:MM:SS format'),
+  ...employeeFieldLengthValidators(['fullName', 'phone', 'cnicNumber']),
 ];
 
 router.post(

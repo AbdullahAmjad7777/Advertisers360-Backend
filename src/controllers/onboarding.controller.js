@@ -1,6 +1,4 @@
-import path from 'node:path';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import { uploadBufferToUploadThing } from '../utils/uploadthing.js';
 import * as invitationService from '../services/invitation.service.js';
 
 export const getByToken = asyncHandler(async (req, res) => {
@@ -25,13 +23,6 @@ function toOptionalFloat(value) {
 }
 
 export const complete = asyncHandler(async (req, res) => {
-  let profilePictureUrl = null;
-  if (req.file) {
-    const ext = path.extname(req.file.originalname) || '';
-    const filename = `profile_${req.params.token.slice(0, 8)}_${Date.now()}${ext}`;
-    profilePictureUrl = await uploadBufferToUploadThing(req.file.buffer, filename, req.file.mimetype);
-  }
-
   const employee = await invitationService.completeOnboarding(req.params.token, {
     fullName: req.body.fullName,
     password: req.body.password,
@@ -51,7 +42,7 @@ export const complete = asyncHandler(async (req, res) => {
     accountNumber: req.body.accountNumber || undefined,
     iban: req.body.iban || undefined,
     baseSalary: toOptionalFloat(req.body.baseSalary),
-    profilePictureUrl,
+    profilePictureUrl: null,
   });
   res.status(201).json({ success: true, message: 'Profile submitted successfully', data: employee });
 });
