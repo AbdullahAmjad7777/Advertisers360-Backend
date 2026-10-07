@@ -277,3 +277,66 @@ export async function findHistoryByEmployee(employeeId, { limit, offset, from, t
 
   return { rows, total: countRows[0].total };
 }
+
+// The most recent earlier shift this employee actually checked in to. If it
+// has no check-out, they forgot to check out and are blocked from checking
+// in until a manager/CEO closes it. Only the latest one matters: an older
+// open row followed by a later check-in was already dealt with.
+export async function findLatestCheckedInBefore(employeeId, shiftDate) {
+  const [rows] = await pool.query(
+    `SELECT * FROM attendance
+     WHERE employee_id = ? AND attendance_date < ? AND check_in_time IS NOT NULL
+     ORDER BY attendance_date DESC
+     LIMIT 1`,
+    [employeeId, shiftDate],
+  );
+  return rows[0] ?? null;
+}
+
+// Everyone currently blocked by a missed check-out, among employeeIds:
+// their latest checked-in shift before `beforeDate` has no check-out.
+export async function findBlockingMissedCheckouts(employeeIds, beforeDate) {
+  if (employeeIds.length === 0) return [];
+  const [rows] = await pool.query(
+    `SELECT a.id AS attendance_id, a.employee_id, e.employee_code, e.full_name, r.role_name,
+            a.attendance_date, a.check_in_time
+     FROM attendance a
+     JOIN employees e ON e.id = a.employee_id
+     JOIN roles r ON r.id = e.role_id
+     WHERE a.employee_id IN (?)
+       AND a.attendance_date < ?
+       AND a.check_in_time IS NOT NULL
+       AND a.check_out_time IS NULL
+       AND NOT EXISTS (
+         SELECT 1 FROM attendance b
+         WHERE b.employee_id = a.employee_id
+           AND b.check_in_time IS NOT NULL
+           AND b.attendance_date > a.attendance_date
+           AND b.attendance_date < ?
+       )
+     ORDER BY a.attendance_date DESC, e.full_name ASC`,
+    [employeeIds, beforeDate, beforeDate],
+  );
+  return rows;
+}
+
+export async function findAttendanceForEmployeesInRange(employeeIds, from, to) {
+  if (employeeIds.length === 0) return [];
+  const [rows] = await pool.query(
+    `SELECT employee_id, attendance_date, check_in_time, check_out_time, total_hours, status
+     FROM attendance
+     WHERE employee_id IN (?) AND attendance_date BETWEEN ? AND ?`,
+    [employeeIds, from, to],
+  );
+  return rows;
+}
+
+export async function findApprovedLeavesForEmployeesInRange(employeeIds, from, to) {
+  if (employeeIds.length === 0) return [];
+  const [rows] = await pool.query(
+    `SELECT employee_id, from_date, to_date FROM leaves
+     WHERE employee_id IN (?) AND status = 'approved' AND from_date <= ? AND to_date >= ?`,
+    [employeeIds, to, from],
+  );
+  return rows;
+}

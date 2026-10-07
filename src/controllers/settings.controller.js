@@ -27,3 +27,16 @@ export const updateLocationRestriction = asyncHandler(async (req, res) => {
   });
   res.json({ success: true, message: 'Location restriction setting updated', data: setting });
 });
+
+export const getLatePolicy = asyncHandler(async (req, res) => {
+  const policy = await settingsService.getLatePolicy();
+  res.json({ success: true, message: 'Late policy fetched', data: policy });
+});
+
+export const updateLatePolicy = asyncHandler(async (req, res) => {
+  const policy = await settingsService.setLateGraceMinutes({
+    minutes: Number(req.body.graceMinutes),
+    updatedBy: req.user.id,
+  });
+  res.json({ success: true, message: 'Late policy updated', data: policy });
+});

@@ -1,6 +1,8 @@
 // Central permission matrix. Add a new role by adding one entry here —
 // no controller/route code should ever branch on role name directly.
 
+// Shared by CEO and manager. The CEO-only extras (tasks, seeing the
+// manager's own records, the late policy) are layered on top in CEO_ACCESS.
 const FULL_ACCESS = {
   viewAllEmployees: true,
   manageEmployees: true,
@@ -13,6 +15,22 @@ const FULL_ACCESS = {
   generatePayroll: true,
   receiveLoginAlerts: true,
   manageSettings: true,
+  // Breaks, attendance %, leave/absence and late stats of every employee.
+  viewTeamRecords: true,
+  // The same records for the manager account too (not just employees).
+  viewManagerRecords: false,
+  manageTasks: false,
+  // Close a missed check-out so the person can check in again. Who can be
+  // unblocked is still scoped by viewTeamRecords/viewManagerRecords.
+  unblockCheckIn: true,
+  manageLatePolicy: false,
+};
+
+const CEO_ACCESS = {
+  ...FULL_ACCESS,
+  viewManagerRecords: true,
+  manageTasks: true,
+  manageLatePolicy: true,
 };
 
 const EMPLOYEE_ACCESS = {
@@ -27,10 +45,15 @@ const EMPLOYEE_ACCESS = {
   generatePayroll: false,
   receiveLoginAlerts: false,
   manageSettings: false,
+  viewTeamRecords: false,
+  viewManagerRecords: false,
+  manageTasks: false,
+  unblockCheckIn: false,
+  manageLatePolicy: false,
 };
 
 export const ROLE_PERMISSIONS = {
-  ceo: FULL_ACCESS,
+  ceo: CEO_ACCESS,
   manager: FULL_ACCESS,
   employee: EMPLOYEE_ACCESS,
 };

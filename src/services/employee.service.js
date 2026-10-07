@@ -14,10 +14,29 @@ import {
   bumpSessionEpoch,
 } from '../models/employee.model.js';
 import { insertUninstallRequest } from '../models/agent.model.js';
+import { findRoleNameById, findOtherHoldersOfRole } from '../models/lookup.model.js';
 
 const SALT_ROUNDS = 10;
 
+// The company has exactly one CEO and one manager. Enforced here, on create
+// and on role change, rather than only in the UI.
+const SINGLE_HOLDER_ROLES = new Set(['ceo', 'manager']);
+
+async function assertRoleAvailable(roleId, employeeId) {
+  const roleName = await findRoleNameById(roleId);
+  if (!roleName || !SINGLE_HOLDER_ROLES.has(roleName)) return;
+  const holders = await findOtherHoldersOfRole(roleId, employeeId);
+  if (holders.length > 0) {
+    throw new ApiError(
+      409,
+      `There can only be one ${roleName === 'ceo' ? 'CEO' : 'manager'}. ${holders[0].full_name} already has this role.`,
+      'ROLE_ALREADY_TAKEN',
+    );
+  }
+}
+
 export async function createEmployee(input) {
+  await assertRoleAvailable(input.roleId, null);
   const passwordHash = await bcrypt.hash(input.password, SALT_ROUNDS);
   const connection = await pool.getConnection();
 
@@ -62,6 +81,10 @@ export async function updateEmployeeById(id, fields) {
   const existing = await findEmployeeDetailById(id);
   if (!existing) {
     throw new ApiError(404, 'Employee not found');
+  }
+
+  if (fields.roleId !== undefined && Number(fields.roleId) !== existing.role_id) {
+    await assertRoleAvailable(fields.roleId, id);
   }
 
   await updateEmployee(id, fields);

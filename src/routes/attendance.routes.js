@@ -17,6 +17,53 @@ router.post('/check-out', attendanceController.checkOut);
 // stops matching once an overnight shift crosses midnight.
 router.get('/me/current', attendanceController.currentStatus);
 
+// Whether a missed check-out on an earlier shift is blocking check-in, so
+// the dashboard can explain it before the employee even clicks.
+router.get('/me/check-in-block', attendanceController.checkInBlock);
+
+// The endpoints below are scoped per requester in visibility.service.js:
+// employee -> self, manager -> all employees (+ self), CEO -> employees + manager.
+router.get(
+  '/calendar',
+  [
+    query('employeeId').optional().isInt({ min: 1 }),
+    query('year').optional().isInt({ min: 2000, max: 2100 }),
+  ],
+  validateRequest,
+  attendanceController.calendar,
+);
+
+router.get(
+  '/stats',
+  [query('year').optional().isInt({ min: 2000, max: 2100 })],
+  validateRequest,
+  attendanceController.stats,
+);
+
+router.get(
+  '/late-summary',
+  [
+    query('month').optional().isInt({ min: 1, max: 12 }),
+    query('year').optional().isInt({ min: 2000, max: 2100 }),
+  ],
+  validateRequest,
+  attendanceController.lateSummary,
+);
+
+router.get('/missed-checkouts', requirePermission('unblockCheckIn'), attendanceController.missedCheckouts);
+
+router.post(
+  '/:id/close-missed-checkout',
+  requirePermission('unblockCheckIn'),
+  [
+    param('id').isInt({ min: 1 }).withMessage('Invalid attendance id'),
+    body('checkOutTime').isISO8601().withMessage('checkOutTime must be a valid datetime'),
+    body('reason').trim().notEmpty().isLength({ max: 200 }).withMessage('A reason is required'),
+  ],
+  validateRequest,
+  attendanceController.closeMissedCheckout,
+);
+
 router.get(
   '/today',
   requirePermission('viewAllAttendance'),

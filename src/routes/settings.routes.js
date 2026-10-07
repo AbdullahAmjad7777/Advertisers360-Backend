@@ -27,6 +27,18 @@ router.patch(
   settingsController.updateOfficeHours,
 );
 
+// Readable by everyone (late counts are shown to employees too); only the
+// CEO can change the grace period.
+router.get('/late-policy', settingsController.getLatePolicy);
+
+router.patch(
+  '/late-policy',
+  requirePermission('manageLatePolicy'),
+  [body('graceMinutes').isInt({ min: 0, max: 180 }).withMessage('graceMinutes must be 0-180')],
+  validateRequest,
+  settingsController.updateLatePolicy,
+);
+
 // Unlike office hours (readable by every role for attendance screens), the
 // location-restriction toggle itself is CEO/manager-only end to end — a
 // regular employee has no legitimate reason to see whether it's on or off,

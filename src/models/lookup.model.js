@@ -23,3 +23,18 @@ export async function findAllDesignations() {
   );
   return rows;
 }
+
+export async function findRoleNameById(roleId) {
+  const [rows] = await pool.query(`SELECT role_name FROM roles WHERE id = ? LIMIT 1`, [roleId]);
+  return rows[0]?.role_name ?? null;
+}
+
+// Other employees already holding this role (deleted employees are removed
+// from the table entirely, so every remaining row counts).
+export async function findOtherHoldersOfRole(roleId, excludeEmployeeId) {
+  const [rows] = await pool.query(
+    `SELECT id, full_name FROM employees WHERE role_id = ? AND id <> ?`,
+    [roleId, excludeEmployeeId ?? 0],
+  );
+  return rows;
+}

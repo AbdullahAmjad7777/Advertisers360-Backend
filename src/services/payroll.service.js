@@ -178,6 +178,7 @@ async function calculatePayrollForEmployee(employeeId, month, year) {
     totalPresentDays: presentDays,
     totalAbsentDays: absentDays,
     totalLeaveDays: leaveDays,
+    totalLateDays: lateDays,
     lateDeductionDays,
     lateDeductionAmount,
     lateDeductionBreakdown,
@@ -185,6 +186,25 @@ async function calculatePayrollForEmployee(employeeId, month, year) {
     totalDeductions: round2(totalDeductions),
     netSalary: round2(netSalary),
   };
+}
+
+// Live view of the 3-lates rule before payroll is generated, so employees,
+// the manager and the CEO can see this month's running deduction. Uses the
+// exact payroll calculation so the preview always matches the real payslip.
+// Returns null when the employee has no salary structure yet.
+export async function getLateDeductionPreview(employeeId, month, year) {
+  try {
+    const calc = await calculatePayrollForEmployee(employeeId, month, year);
+    return {
+      lateDays: calc.totalLateDays,
+      deductionDays: calc.lateDeductionDays,
+      deductionAmount: calc.lateDeductionAmount,
+      breakdown: calc.lateDeductionBreakdown,
+    };
+  } catch (err) {
+    if (err instanceof ApiError && err.statusCode === 422) return null;
+    throw err;
+  }
 }
 
 export async function setSalaryStructure(employeeId, fields) {

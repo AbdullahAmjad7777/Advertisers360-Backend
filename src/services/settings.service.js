@@ -3,6 +3,7 @@ import {
   findCompanySettings,
   updateCompanySettings,
   updateLocationRestrictionEnabled,
+  updateLateGraceMinutes,
 } from '../models/settings.model.js';
 import { findShiftOverrideByEmployee } from '../models/employee.model.js';
 
@@ -33,6 +34,7 @@ async function getCompanySettings() {
   cached = {
     officeStartTime: row.office_start_time,
     officeEndTime: row.office_end_time,
+    lateGraceMinutes: Number(row.late_grace_minutes),
     locationRestrictionEnabled: Boolean(row.location_restriction_enabled),
   };
   cachedAt = Date.now();
@@ -57,6 +59,26 @@ export async function getEffectiveShiftHours(employeeId) {
     return company;
   }
   return { officeStartTime: override.shift_start_time, officeEndTime: override.shift_end_time };
+}
+
+// Check-in is late once it's more than this many minutes after shift start.
+export async function getLateGraceMinutes() {
+  const { lateGraceMinutes } = await getCompanySettings();
+  return lateGraceMinutes;
+}
+
+export async function getLatePolicy() {
+  const { officeStartTime, lateGraceMinutes } = await getCompanySettings();
+  return { officeStartTime, graceMinutes: lateGraceMinutes, latesPerDeduction: 3 };
+}
+
+export async function setLateGraceMinutes({ minutes, updatedBy }) {
+  if (!Number.isInteger(minutes) || minutes < 0 || minutes > 180) {
+    throw new ApiError(422, 'Grace minutes must be a whole number between 0 and 180');
+  }
+  await updateLateGraceMinutes({ minutes, updatedBy });
+  invalidateCache();
+  return getLatePolicy();
 }
 
 function isValidTime(value) {

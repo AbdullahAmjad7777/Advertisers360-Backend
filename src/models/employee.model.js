@@ -243,6 +243,7 @@ export async function deleteEmployeeCascade(id) {
       'UPDATE agent_uninstall_requests SET resolved_by = NULL WHERE resolved_by = ?',
       [id],
     );
+    await connection.query('UPDATE tasks SET assigned_by = NULL WHERE assigned_by = ?', [id]);
 
     // Delete rows that belong solely to this employee.
     await connection.query('DELETE FROM message_read_receipts WHERE employee_id = ?', [id]);
@@ -258,7 +259,9 @@ export async function deleteEmployeeCascade(id) {
        WHERE edited_by = ? OR attendance_id IN (SELECT id FROM attendance WHERE employee_id = ?)`,
       [id, id],
     );
+    await connection.query('DELETE FROM attendance_breaks WHERE employee_id = ?', [id]);
     await connection.query('DELETE FROM attendance WHERE employee_id = ?', [id]);
+    await connection.query('DELETE FROM tasks WHERE assigned_to = ?', [id]);
     await connection.query('DELETE FROM payroll WHERE employee_id = ?', [id]);
     await connection.query('DELETE FROM salary_structure WHERE employee_id = ?', [id]);
     await connection.query('DELETE FROM leave_balances WHERE employee_id = ?', [id]);
