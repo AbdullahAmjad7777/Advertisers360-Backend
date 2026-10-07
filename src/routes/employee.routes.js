@@ -98,4 +98,22 @@ router.post(
   employeeController.revokeSession,
 );
 
+// Body holds a password: never log it (errorHandler doesn't log bodies).
+router.post(
+  '/:id/reset-password',
+  requirePermission('resetPasswords'),
+  [
+    param('id').isInt({ min: 1 }).withMessage('Invalid employee id'),
+    // bcrypt only uses the first 72 bytes, so longer passwords are rejected
+    // instead of being silently truncated.
+    body('newPassword')
+      .isString()
+      .isLength({ min: 8, max: 72 })
+      .withMessage('Password must be 8-72 characters'),
+    body('signOutEverywhere').optional().isBoolean().toBoolean(),
+  ],
+  validateRequest,
+  employeeController.resetPassword,
+);
+
 export default router;

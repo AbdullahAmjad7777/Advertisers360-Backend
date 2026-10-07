@@ -24,6 +24,10 @@ const FULL_ACCESS = {
   // unblocked is still scoped by viewTeamRecords/viewManagerRecords.
   unblockCheckIn: true,
   manageLatePolicy: false,
+  // Set a new password for someone else. Whose password is still scoped by
+  // viewTeamRecords/viewManagerRecords (manager -> employees, CEO -> also
+  // the manager), and never your own.
+  resetPasswords: true,
 };
 
 const CEO_ACCESS = {
@@ -50,6 +54,7 @@ const EMPLOYEE_ACCESS = {
   manageTasks: false,
   unblockCheckIn: false,
   manageLatePolicy: false,
+  resetPasswords: false,
 };
 
 export const ROLE_PERMISSIONS = {

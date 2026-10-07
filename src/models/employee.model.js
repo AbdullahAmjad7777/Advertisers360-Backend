@@ -327,3 +327,17 @@ export async function bumpSessionEpoch(employeeId) {
     employeeId,
   ]);
 }
+
+export async function updatePasswordHash(employeeId, passwordHash) {
+  await pool.query('UPDATE employees SET password_hash = ? WHERE id = ?', [passwordHash, employeeId]);
+}
+
+// Who reset whose password and when. The password itself (old or new) is
+// never stored here.
+export async function insertPasswordResetAudit({ performedBy, employeeId, signedOutEverywhere }) {
+  await pool.query(
+    `INSERT INTO audit_logs (performed_by, action_type, table_name, record_id, new_value)
+     VALUES (?, 'password_reset', 'employees', ?, ?)`,
+    [performedBy, employeeId, JSON.stringify({ signedOutEverywhere })],
+  );
+}

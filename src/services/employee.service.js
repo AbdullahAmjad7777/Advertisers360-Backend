@@ -12,7 +12,11 @@ import {
   updateEmployee,
   deleteEmployeeCascade,
   bumpSessionEpoch,
+  updatePasswordHash,
+  insertPasswordResetAudit,
 } from '../models/employee.model.js';
+import { createBulkNotifications } from '../models/notification.model.js';
+import { resolveEmployeeScope } from './visibility.service.js';
 import { insertUninstallRequest } from '../models/agent.model.js';
 import { findRoleNameById, findOtherHoldersOfRole } from '../models/lookup.model.js';
 
@@ -150,4 +154,56 @@ export async function revokeEmployeeSession(id, requesterId, io) {
   });
 
   return existing;
+}
+
+// CEO/manager sets a new password for someone else (e.g. they forgot it).
+// Scope comes from visibility.service: the manager can reset employees, the
+// CEO employees and the manager; nobody can reset the CEO this way, and
+// nobody can reset their own password here. The employee gets an in-app
+// notification, and the reset is recorded in audit_logs (without the
+// password). With signOutEverywhere, every existing web + desktop-agent
+// session is ended too (same mechanism as revokeEmployeeSession).
+export async function resetEmployeePassword(requester, id, { newPassword, signOutEverywhere }, io) {
+  if (id === requester.id) {
+    throw new ApiError(400, 'You cannot reset your own password here');
+  }
+  const existing = await findEmployeeDetailById(id);
+  if (!existing) {
+    throw new ApiError(404, 'Employee not found');
+  }
+  try {
+    await resolveEmployeeScope(requester, id);
+  } catch (err) {
+    if (err instanceof ApiError && err.statusCode === 403) {
+      throw new ApiError(403, "You do not have permission to reset this person's password");
+    }
+    throw err;
+  }
+
+  const passwordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+  await updatePasswordHash(id, passwordHash);
+  await insertPasswordResetAudit({
+    performedBy: requester.id,
+    employeeId: id,
+    signedOutEverywhere: Boolean(signOutEverywhere),
+  });
+
+  if (signOutEverywhere) {
+    await bumpSessionEpoch(id);
+    invalidateActiveStatusCache(id);
+    io?.to(`user:${id}`).emit('force-logout', {
+      message: 'Your password was changed by an admin. Please log in with your new password.',
+    });
+  }
+
+  await createBulkNotifications([
+    {
+      recipientId: id,
+      type: 'password_reset',
+      message: 'Your password was changed by your manager or the CEO. Ask them for the new password if you need it.',
+      relatedEmployeeId: requester.id,
+    },
+  ]);
+
+  return { id: existing.id, fullName: existing.full_name, signedOutEverywhere: Boolean(signOutEverywhere) };
 }

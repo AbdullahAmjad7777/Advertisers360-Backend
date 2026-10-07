@@ -44,3 +44,13 @@ export const revokeSession = asyncHandler(async (req, res) => {
   );
   res.json({ success: true, message: 'Session reset', data: employee });
 });
+
+export const resetPassword = asyncHandler(async (req, res) => {
+  const result = await employeeService.resetEmployeePassword(
+    req.user,
+    Number(req.params.id),
+    { newPassword: req.body.newPassword, signOutEverywhere: req.body.signOutEverywhere },
+    req.app.get('io'),
+  );
+  res.json({ success: true, message: 'Password updated', data: result });
+});
