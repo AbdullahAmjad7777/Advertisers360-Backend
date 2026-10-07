@@ -432,12 +432,13 @@ async function buildDays(people, from, to) {
       days.push({
         date,
         record,
+        isCurrentShift: date === currentShiftDate,
         status: classifyDay({
           date,
           record,
           isHoliday: holidaySet.has(date),
           onLeave: leaveDates.has(date),
-          joinDate: person.join_date,
+          joinDate: person.tracking_start ?? person.join_date,
           currentShiftDate,
         }),
       });
@@ -447,27 +448,43 @@ async function buildDays(people, from, to) {
   return result;
 }
 
+function percentage(part, whole) {
+  return whole > 0 ? Math.round((part / whole) * 1000) / 10 : null;
+}
+
+// attendancePercentage counts every day the person came (on time or late);
+// onTimePercentage counts only check-ins by the deadline, so a punctual
+// person and a habitually late one no longer look identical.
+// missedCheckouts: past shifts checked in to but never checked out of (the
+// shift in progress right now isn't counted).
 function summarize(days) {
   let workingDays = 0;
   let attendedDays = 0;
+  let onTimeDays = 0;
   let lateDays = 0;
   let absentDays = 0;
   let leaveDays = 0;
-  for (const { status } of days) {
+  let missedCheckouts = 0;
+  for (const { status, record, isCurrentShift } of days) {
     if (NON_COUNTING_STATUSES.has(status)) continue;
     workingDays += 1;
     if (isAttended(status)) attendedDays += 1;
+    if (status === 'present') onTimeDays += 1;
     if (status === 'late') lateDays += 1;
     if (status === 'absent') absentDays += 1;
     if (status === 'on_leave') leaveDays += 1;
+    if (record?.check_in_time && !record.check_out_time && !isCurrentShift) missedCheckouts += 1;
   }
   return {
     workingDays,
     attendedDays,
+    onTimeDays,
     lateDays,
     absentDays,
     leaveDays,
-    attendancePercentage: workingDays > 0 ? Math.round((attendedDays / workingDays) * 1000) / 10 : null,
+    missedCheckouts,
+    attendancePercentage: percentage(attendedDays, workingDays),
+    onTimePercentage: percentage(onTimeDays, workingDays),
   };
 }
 
@@ -502,11 +519,14 @@ export async function getYearCalendar(user, { employeeId, year }) {
   };
 }
 
-// Per-person attendance %, leaves and absences for the year so far. Powers
-// the dashboard donut and bar charts. Scope comes from visibility.service.
-export async function getAttendanceStats(user, { year }) {
+// Per-person attendance %, on-time %, leaves and absences for one month
+// (month to date for the current month). Powers the dashboard donut and bar
+// charts. Scope comes from visibility.service.
+export async function getAttendanceStats(user, { year, month }) {
   const people = await getVisibleEmployees(user);
-  const daysByPerson = await buildDays(people, `${year}-01-01`, `${year}-12-31`);
+  const from = toDateString(year, month, 1);
+  const to = toDateString(year, month, daysInMonth(year, month));
+  const daysByPerson = await buildDays(people, from, to);
   return people.map((p) => ({
     employeeId: p.id,
     employeeCode: p.employee_code,

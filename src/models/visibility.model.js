@@ -16,7 +16,12 @@ export async function findActiveEmployeesByRoles(roles, alsoIncludeId) {
   if (conditions.length === 0) return [];
 
   const [rows] = await pool.query(
-    `SELECT e.id, e.employee_code, e.full_name, e.join_date, r.role_name
+    // tracking_start: attendance can't be recorded before the account
+    // existed, so days before it must not count as absences even when
+    // join_date is earlier (e.g. someone who joined in 2025 but was only
+    // added to the system in Aug 2026).
+    `SELECT e.id, e.employee_code, e.full_name, e.join_date,
+            GREATEST(e.join_date, DATE(e.created_at)) AS tracking_start, r.role_name
      FROM employees e
      JOIN roles r ON r.id = e.role_id
      WHERE e.is_active = 1 AND (${conditions.join(' OR ')})

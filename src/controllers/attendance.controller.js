@@ -106,8 +106,10 @@ export const calendar = asyncHandler(async (req, res) => {
 });
 
 export const stats = asyncHandler(async (req, res) => {
+  const now = currentPktYearMonth();
   const result = await attendanceService.getAttendanceStats(req.user, {
-    year: req.query.year ? Number(req.query.year) : currentPktYearMonth().year,
+    year: req.query.year ? Number(req.query.year) : now.year,
+    month: req.query.month ? Number(req.query.month) : now.month,
   });
   res.json({ success: true, message: 'Attendance stats fetched', data: result });
 });
